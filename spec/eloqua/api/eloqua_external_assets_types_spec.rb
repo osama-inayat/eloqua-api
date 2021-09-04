@@ -17,11 +17,11 @@ RSpec.describe Eloqua::Api::EloquaExternalAssetsTypes, external_asset_types_api_
       },
       {
         'id' => '3',
-        'name' => 'Sendoso'
+        'name' => 'Horseshow'
       },
       {
         'id' => '5',
-        'name' => 'Send Statuses'
+        'name' => 'Testing 5'
       }
     ]
   end
