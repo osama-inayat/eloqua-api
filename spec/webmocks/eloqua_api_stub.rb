@@ -9,7 +9,7 @@ RSpec.configure do |config|
          'createdAt' => '1617908682',
          'createdBy' => '9',
          'depth' => 'minimal',
-         'name' => 'Sendoso',
+         'name' => 'Horseshow',
          'updatedAt' => '1628283687',
          'updatedBy' => '9' },
        { 'type' => 'ExternalAssetType',
@@ -17,7 +17,7 @@ RSpec.configure do |config|
          'createdAt' => '1629729491',
          'createdBy' => '9',
          'depth' => 'minimal',
-         'name' => 'Send Statuses',
+         'name' => 'Testing 5',
          'updatedAt' => '1629729491',
          'updatedBy' => '9' }] }.to_json
 

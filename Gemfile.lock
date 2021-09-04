@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    eloqua-api-wrapper (0.1.0)
+    eloqua-api (0.1.0)
       httparty
 
 GEM
@@ -65,7 +65,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.17)
-  eloqua-api-wrapper!
+  eloqua-api!
   rake (~> 10.0)
   rspec (~> 3.0)
   rubocop
