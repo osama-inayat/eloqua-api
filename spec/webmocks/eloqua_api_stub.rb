@@ -21,6 +21,24 @@ RSpec.configure do |config|
          'updatedAt' => '1629729491',
          'updatedBy' => '9' }] }.to_json
 
+  single_asset_type_response = { 'type' => 'ExternalAssetType', 'id' => '1', 'createdAt' => '1256486517',
+                                 'depth' => 'complete', 'name' => 'Webinar', 'updatedAt' => '1256486517',
+                                 'activityTypes' => [
+                                   {
+                                     'type' => 'ExternalActivityType',
+                                     'id' => '1001',
+                                     'createdAt' => '1256486517',
+                                     'depth' => 'complete',
+                                     'name' => 'Attended',
+                                     'updatedAt' => '1256486517'
+                                   },
+                                   { 'type' => 'ExternalActivityType',
+                                     'id' => '1000',
+                                     'createdAt' => '1256486517',
+                                     'depth' => 'complete',
+                                     'name' => 'Registered',
+                                     'updatedAt' => '1256486517' }
+                                 ] }.to_json
   config.before do |example|
     base_url = 'https://secure.p02.eloqua.com/API/REST/2.0/'
     if example.metadata[:external_asset_types_api_stub]
@@ -28,6 +46,15 @@ RSpec.configure do |config|
              .to_return(
                status: 200,
                body: external_assets_types_response,
+               headers: {
+                 content_type: 'application/json'
+               }
+             )
+    elsif example.metadata[:single_asset_activities_api_stub]
+      WebMock.stub_request(:get, "#{base_url}assets/external/type/1")
+             .to_return(
+               status: 200,
+               body: single_asset_type_response,
                headers: {
                  content_type: 'application/json'
                }

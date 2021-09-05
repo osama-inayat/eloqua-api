@@ -3,5 +3,8 @@ ELOQUA_ENDPOINTS = {
     endpoint: '/assets/external/types',
     method: :get
   },
-  
+  single_asset_activities: {
+    endpoint: '/assets/external/type/{id}',
+    method: :get
+  }
 }.freeze

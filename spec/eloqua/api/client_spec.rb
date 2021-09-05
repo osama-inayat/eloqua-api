@@ -1,6 +1,6 @@
 require 'eloqua/api/client'
 
-RSpec.describe Eloqua::Api::Client, stub_eloqua_client_api: true do
+RSpec.describe Eloqua::Api::Client, stub_eloqua_client_api: true do # rubocop: disable all
   let(:client_object) do
     described_class.new(access_token: TEST_SAMPLE_TOKEN, base_url: TEST_SAMPLE_URL)
   end
