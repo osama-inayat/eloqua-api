@@ -12,6 +12,7 @@ jobs:
       - ruby/install:
           version: '2.6.3'
       - ruby/install-deps:
+          key: '1:11'
           bundler-version: '1.17'
 workflows:
   example-workflow:
