@@ -14,7 +14,7 @@ jobs:
       - ruby/install-deps:
           key: eloqua-key-v1
           bundler-version: '1.17'
-          path: ./eloqua-api-wrapper
+          path: /home/circleci/.rvm/gems
       - ruby/rspec-test
 workflows:
   eloqua-workflow:
