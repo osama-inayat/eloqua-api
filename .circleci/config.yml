@@ -6,6 +6,8 @@ jobs:
       - image: 'cimg/ruby:2.6.3'
     steps:
       - checkout
+      - ruby/install:
+          version: '2.6.3'
       - ruby/install-deps
       - ruby/rspec-test
 orbs:
