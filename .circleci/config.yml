@@ -10,7 +10,10 @@ jobs:
       - image: cimg/base:stable
     steps:
       - ruby/install:
-          version: '2.6.3' 
+          version: '2.6.3'
+      - ruby/install-deps:
+          key: gems-v1 
+          path: ./
 workflows:
   example-workflow:
     jobs:
