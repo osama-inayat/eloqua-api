@@ -12,6 +12,7 @@ jobs:
       - ruby/install:
           version: '2.6.3'
       - ruby/install-deps:
+          with-cache: false
           bundler-version: '~> 1.17'
           path: /
       - ruby/rspec-test
