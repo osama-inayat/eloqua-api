@@ -11,7 +11,9 @@ jobs:
     steps:
       - ruby/install:
           version: '2.6.3'
-      - ruby/install-deps
+      - ruby/install-deps:
+          key: eloqua-key-v1
+          path: ./Library/Ruby/Gems/
       - ruby/rspec-test
 workflows:
   eloqua-workflow:
