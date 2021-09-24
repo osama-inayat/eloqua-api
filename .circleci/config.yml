@@ -4,18 +4,14 @@ orbs:
   ruby: circleci/ruby@1.2.0
 
 jobs:
-  eloqua-api:
+  eloqua-job:
     docker:
       # replace with your preferred image
       - image: cimg/base:stable
     steps:
       - ruby/install:
-          version: '2.6.3'
-     
-      - ruby/install-deps:
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }} 
-          
+          version: '2.6.3' 
 workflows:
-  example-workflow:
+  eloqua-workflow:
     jobs:
-      - eloqua-api
+      - eloqua-job
