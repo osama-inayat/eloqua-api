@@ -9,6 +9,7 @@ jobs:
       # replace with your preferred image
       - image: cimg/base:stable
     steps:
+      - ruby/install-deps
       - ruby/install:
           version: '2.6.3' 
       - ruby/rspec-test:
