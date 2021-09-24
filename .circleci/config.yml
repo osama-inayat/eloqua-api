@@ -1,34 +1,33 @@
-working_dir: &working_dir ~/app
-
-.build_template: &build_definition
-  steps:
-    - checkout
-    - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-    - run: chmod +x ./cc-test-reporter
-    - run: ./cc-test-reporter before-build
-    - run: gem install bundler:2.1.4
-    - run: bundle install --jobs=4 --retry=4 --path vendor/bundle
-    - run: bundle exec rake rubocop
-    - run:
-        name: Run tests
-        command: |
-          bundle exec rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
-          ./cc-test-reporter after-build --exit-code $?
-  working_directory: *working_dir
-
-version: 2.0
-
 jobs:
   build:
     docker:
-      - image: ruby
+      - image: 'cimg/ruby:2.6.3'
     steps:
       - checkout
+      - ruby/install-deps
+  checking:
     docker:
-      - image: ruby:2.3
-
+      - image: 'cimg/ruby:2.6.3'
+    steps:
+      - checkout
+      - ruby/install-deps
+  test:
+    docker:
+      - image: 'cimg/ruby:2.6.3'
+    steps:
+      - checkout
+      - ruby/install-deps:
+          bundler-version: '1.17'
+          with-cache: false
+      - ruby/rspec-test
+orbs:
+  ruby: circleci/ruby@1.2.0
+version: 2.1
 workflows:
-  version: 2
-  build_ruby_versions:
+  build_and_test:
     jobs:
       - build
+      - checking
+      - test:
+          requires:
+            - build
