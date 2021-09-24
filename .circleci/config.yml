@@ -13,7 +13,7 @@ jobs:
           version: '2.6.3'
       - ruby/install-deps:
           key: eloqua-key-v1
-          path: ./eloqua-api-wrapper
+          bundler-version: '1.17'
       - ruby/rspec-test
 workflows:
   eloqua-workflow:
