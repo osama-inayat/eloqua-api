@@ -3,6 +3,7 @@ require 'webmock/rspec'
 require 'json'
 require 'constants/constants'
 require 'constants/eloqua_endpoints'
+require 'rspec_junit_formatter'
 
 Dir[File.join(__dir__, 'webmocks', '*.rb')].each { |file| require file } # rubocop: disable all
 
