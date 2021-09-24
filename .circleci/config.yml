@@ -16,7 +16,8 @@ jobs:
       - image: 'cimg/ruby:2.6.3'
     steps:
       - checkout
-      - ruby/install-deps
+      - ruby/install-deps:
+          bundler-version: '1.17'
       - ruby/rspec-test
 orbs:
   ruby: circleci/ruby@1.2.0
