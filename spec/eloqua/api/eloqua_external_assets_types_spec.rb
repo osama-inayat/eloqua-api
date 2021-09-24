@@ -75,4 +75,9 @@ RSpec.describe Eloqua::Api::EloquaExternalAssetsTypes, single_asset_activities_a
              end).to be_truthy
     end
   end
+
+  it 'verifies the api functionality for \'single-asset-type-activities\' not getting dup' do
+    response_data = external_assets_type_obj.fetch_single_asset_activities(id: 1)
+    expect(response_data['id']).to eq(activities_test_data['id'])
+  end
 end

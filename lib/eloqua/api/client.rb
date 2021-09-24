@@ -15,6 +15,8 @@ module Eloqua
       end
 
       def call(api_endpoint:, method_type: :get, params: {})
+        puts api_endpoint
+        puts self.class.base_uri
         request_response = self.class.send(method_type, api_endpoint, body: params)
         return request_response.parsed_response if response_successful?(request_response)
 

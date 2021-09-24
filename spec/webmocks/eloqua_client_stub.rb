@@ -5,7 +5,7 @@ RSpec.configure do |config|
   }.to_json
 
   config.before do |example|
-    base_url = 'https://secure.p02.eloqua.com/API/REST/2.0/'
+    base_url = 'https://eloqua-api-wrapper.com/API/REST/2.0/'
     if example.metadata[:stub_eloqua_client_api]
       WebMock.stub_request(:get, "#{base_url}test")
              .to_return(
