@@ -1,17 +1,31 @@
-version: 2.1
-
 jobs:
-  eloqua-wrapper:
+  build:
     docker:
-      - image: 'cimg/base:2.6.3'
+      - image: 'cimg/ruby:2.6.3'
+    steps:
+      - checkout
+      - ruby/install-deps
+  checking:
+    docker:
+      - image: 'cimg/ruby:2.6.3'
+    steps:
+      - checkout
+      - ruby/install-deps
+  test:
+    docker:
+      - image: 'cimg/ruby:2.6.3'
     steps:
       - checkout
       - ruby/install-deps
       - ruby/rspec-test
 orbs:
   ruby: circleci/ruby@1.2.0
-
+version: 2.1
 workflows:
-  eloqua-wrapper-workflow:
+  build_and_test:
     jobs:
-      - eloqua-wrapper
+      - build
+      - checking
+      - test:
+          requires:
+            - build
