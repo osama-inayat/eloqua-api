@@ -12,7 +12,8 @@ jobs:
       - ruby/install:
           version: '2.6.3' 
       - ruby/rspec-test:
-          label: rspec-checks 
+          label: rspec-checks
+          out-path: .rspec_status
 
 workflows:
   example-workflow:
