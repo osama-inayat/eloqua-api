@@ -11,9 +11,10 @@ jobs:
     steps:
       - ruby/install:
           version: '2.6.3'
+     
       - ruby/install-deps:
-          key: '1:11'
-          bundler-version: '1.17'
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }} 
+          
 workflows:
   example-workflow:
     jobs:
