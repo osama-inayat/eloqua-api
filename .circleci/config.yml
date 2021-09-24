@@ -12,8 +12,7 @@ jobs:
       - ruby/install:
           version: '2.6.3'
       - ruby/install-deps:
-          key: gems-v1 
-          path: ./
+          key: gems-v1
 workflows:
   example-workflow:
     jobs:
