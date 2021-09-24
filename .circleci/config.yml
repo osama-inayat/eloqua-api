@@ -11,6 +11,7 @@ jobs:
     steps:
       - ruby/install:
           version: '2.6.3'
+      - ruby/install-deps
       - ruby/rspec-test
 workflows:
   eloqua-workflow:
