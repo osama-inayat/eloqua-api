@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   eloqua-wrapper:
     docker:
-      - image: 'cimg/base:stable'
+      - image: 'cimg/base:2.6.3'
     steps:
       - checkout
       - ruby/install-deps
