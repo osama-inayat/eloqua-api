@@ -1,33 +1,15 @@
-jobs:
-  build:
-    docker:
-      - image: 'cimg/ruby:2.6.3'
-    steps:
-      - checkout
-      - ruby/install-deps
-  checking:
-    docker:
-      - image: 'cimg/ruby:2.6.3'
-    steps:
-      - checkout
-      - ruby/install-deps
-  test:
-    docker:
-      - image: 'cimg/ruby:2.6.3'
-    steps:
-      - checkout
-      - ruby/install-deps:
-          bundler-version: '1.17'
-          with-cache: false
-      - ruby/rspec-test
 orbs:
   ruby: circleci/ruby@1.2.0
 version: 2.1
+jobs:
+  test-build:
+    docker:
+      - image: 'cimg/ruby:2.6.3'
+    steps:
+      - checkout
+      - ruby/install-deps
+      - ruby/rspec-test
 workflows:
-  build_and_test:
+  eloqua-build:
     jobs:
-      - build
-      - checking
-      - test:
-          requires:
-            - build
+      - test-build
