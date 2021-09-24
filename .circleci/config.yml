@@ -1,25 +1,9 @@
 version: 2.1
 
 jobs:
-  build:
+  eloqua-wrapper:
     docker:
       - image: 'cimg/ruby:2.6.3'
-    steps:
-      - checkout
-      - ruby/install-deps
-  checking:
-    docker:
-      - image: 'cimg/ruby:2.6.3'
-    steps:
-      - checkout
-      - ruby/install-deps
-      - ruby/rubocop-check:
-          format: progress
-          label: Inspecting with Rubocop
-  test:
-    docker:
-      - image: 'cimg/ruby:2.6.3'
-    parallelism: 3
     steps:
       - checkout
       - ruby/install-deps
@@ -28,10 +12,6 @@ orbs:
   ruby: circleci/ruby@1.2.0
 
 workflows:
-  build_and_test:
+  eloqua-wrapper-workflow:
     jobs:
-      - build
-      - checking
-      - test:
-          requires:
-            - build
+      - eloqua-wrapper
