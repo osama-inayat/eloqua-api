@@ -12,7 +12,7 @@ jobs:
       - ruby/install:
           version: '2.6.3'
       - ruby/install-deps:
-          key: eloqua-key-v1
+          bundler-version: '~> 1.17'
           path: /
       - ruby/rspec-test
 workflows:
