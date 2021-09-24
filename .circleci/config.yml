@@ -12,7 +12,6 @@ jobs:
       - ruby/install:
           version: '2.6.3'
       - ruby/install-deps:
-          key: Gemfile.lock
           bundler-version: '1.17'
 workflows:
   example-workflow:
