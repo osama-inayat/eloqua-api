@@ -1,7 +1,7 @@
 require 'eloqua/api/eloqua_external_assets_types'
 require 'eloqua/api/base'
 
-RSpec.describe Eloqua::Api::EloquaExternalAssetsTypes, external_asset_types_api_stub: true do # rubocop: disable all
+RSpec.describe Eloqua::Api::EloquaExternalAssetsTypes, external_asset_types_api_stub: true do
   let(:external_assets_type_obj) do
     described_class.new(access_token: TEST_SAMPLE_TOKEN, base_url: TEST_SAMPLE_URL)
   end
@@ -68,10 +68,5 @@ RSpec.describe Eloqua::Api::EloquaExternalAssetsTypes, external_asset_types_api_
                element['id'] == data['id'] && element['name'] == data['name']
              end).to be_truthy
     end
-  end
-
-  it 'verifies the api functionality for \'single-asset-type-activities\' not getting dup' do
-    response_data = external_assets_type_obj.fetch_single_asset_activities(id: 1)
-    expect(response_data['id']).to eq(activities_test_data['id'])
   end
 end

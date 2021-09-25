@@ -50,7 +50,6 @@ RSpec.configure do |config|
                  content_type: 'application/json'
                }
              )
-    elsif example.metadata[:single_asset_activities_api_stub]
       WebMock.stub_request(:get, "#{base_url}assets/external/type/1")
              .to_return(
                status: 200,

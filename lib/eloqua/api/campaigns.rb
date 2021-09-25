@@ -12,7 +12,7 @@ module Eloqua
       end
 
       def single_campaign(id:)
-        request_payload = ELOQUA_ENDPOINTS[:single_asset_activities].dup
+        request_payload = ELOQUA_ENDPOINTS[:single_campaign].dup
         request_payload[:endpoint] = sub_id_in_endpoint(request_payload[:endpoint], id)
         execute(request_payload)
       end

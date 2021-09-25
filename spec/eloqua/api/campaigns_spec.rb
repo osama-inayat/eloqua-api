@@ -41,11 +41,6 @@ RSpec.describe Eloqua::Api::Campaigns, eloqua_campaigns_api_stub: true do
     end
   end
 
-  it 'verifies hash for endpoint not getting changed' do
-    response_data = eloqua_base_object.all_campaigns(search_params: search_params)
-    expect(response_data['elements']).to be_truthy
-  end
-
   it 'verifies the single campaign api request response' do
     response_data = eloqua_base_object.single_campaign(id: 1)
     expect(response_data).to be_truthy
