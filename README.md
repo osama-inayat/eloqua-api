@@ -29,17 +29,55 @@ client = ::Eloqua::EloquaExternalAssetsTypes.new(
         base_url: 'YOUR-BASE-URL') # e.g. 'https://eloqua-api.com/API/REST/{version}'
 
 # Getting all ExternalAssetTypes
-client.find
-find method accepts two optional params
-1- query_params
-2- search_params
-client.find(query_params: { page: 1, count: 100 }, search_params: { currentStatus: 1, name: 'campaign name'})
+client.find_all
+# Finding based on some condition like fetching campaigns having active status or 
+# based on name or paginated campaigns you can use optional params 
 
+find_all method accepts two optional params
+    1- query_params # mostly for pagination
+    2- search_params # for fetching ExternalAssetType objects based on some conditions
+    
+# Example below fetchs all the ASSET TYPES by paginating them
+    client.find_all(query_params: { page: 1, count: 100 })
+
+# similarly search_params: {} will search for the specific keys added in the hash
+
+# If we want to fetch the Specific ASSET ACTIVITIES simply hit
+    client.find(id: 'my asset_type_id')
 
 # To setup the client for Campaigns
+
 client = ::Eloqua::Campaign.new(
         access_token: 'YOUR-ACCESS-TOKEN', # e.g. djbhyghb27t36hbdhbkjn7y7bhk
         base_url: 'YOUR-BASE-URL') # e.g. 'https://eloqua-api.com/API/REST/{version}'
+        
+# Same here to get all the campaigns 
+    
+    client.find_all
+
+# find_all method accepts two optional params
+    1- query_params # mostly for pagination
+    
+    2- search_params # for fetching campaigns based on some conditions
+
+# If Campaigns based on some condtions are needed to be fetched 
+    
+# Lets Say we want to get all active campaigns
+    
+    client.find_all(search_params: { currentStatus: 1 })
+    # It will get all the campaigns which are active similarly you can add other 
+    # query key values based on searchable from eloqua documentation
+    
+    # https://docs.oracle.com/en/cloud/saas/marketing/eloqua-develop/Developers/RESTAPI/Tutorials/search_parameter.htm?cshid=SearchParam
+    
+    # If we want to fetch all those campaigns which are active and name like 'some-name'
+    client.find_all(search_params: { currentStatus: 1, name: 'some-name' })
+    
+    # Every time we pass search_params it will do a partials searching
+
+# To Fetch Only a Specific Campaign 
+
+    client.find(id: 'campaign_id')
 ```
 
 
