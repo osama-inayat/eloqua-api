@@ -81,4 +81,9 @@ RSpec.describe Eloqua::Api::Campaign, eloqua_campaigns_api_stub: true do
     response_data = eloqua_base_object.deactivate(id: 1)
     expect(response_data).to be_truthy
   end
+
+  it 'verifies the campaign deletion api' do
+    response_data = eloqua_base_object.destroy(id: 1)
+    expect(response_data).to be_truthy
+  end
 end
