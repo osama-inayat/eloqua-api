@@ -52,8 +52,7 @@ module Eloqua
       end
 
       def response_successful?(response)
-        puts response.code
-        response.code == 200 &&
+        response.code == 200 || response.code == 201 &&
           (!response.parsed_response.nil? || response.parsed_response != 'Not authenticated.')
       end
     end
