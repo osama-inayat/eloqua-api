@@ -16,6 +16,12 @@ module Eloqua
         request_payload[:endpoint] = sub_id_in_endpoint(request_payload[:endpoint], id)
         execute(request_payload)
       end
+
+      def update_campaign(id:, payload:)
+        request_payload = ELOQUA_ENDPOINTS[:update_campaign].dup
+        request_payload[:endpoint] = sub_id_in_endpoint(request_payload[:endpoint], id)
+        request_payload[:params] = payload
+      end
     end
   end
 end
