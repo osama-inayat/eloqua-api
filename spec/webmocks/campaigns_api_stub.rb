@@ -33,32 +33,24 @@ RSpec.configure do |config|
     'Content-Type' => 'application/json',
     'User-Agent' => 'Ruby'
   }
-  config.before do |example|
-    base_url = 'https://eloqua-api-wrapper.com/API/REST/2.0/'
-    campaigns_url = "#{base_url}assets/campaigns?search=name=\'*osama inayat*\'currentStatus='*1*'"
-    single_campaign_url = Addressable::Template.new "#{base_url}assets/campaign/1"
 
-    common_headers = { content_type: 'application/json' }
+  config.before do |example|
+    base_url = 'https://eloqua-api-wrapper.com/API/REST/2.0'
+    campaigns_url = "#{base_url}/assets/campaigns?search=name=\'*osama inayat*\'currentStatus='*1*'"
+    single_campaign_url = Addressable::Template.new "#{base_url}#{ELOQUA_ENDPOINTS[:single_campaign][:endpoint]}"
+    create_campaign = "#{base_url}/assets/campaign"
+    activate_campaign =
+      Addressable::Template.new "#{base_url}#{ELOQUA_ENDPOINTS[:activate_campaign][:endpoint]}?active=true"
+    deactivate_campaign =
+      Addressable::Template.new "#{base_url}#{ELOQUA_ENDPOINTS[:deactive_campaign][:endpoint]}"
+
     if example.metadata[:eloqua_campaigns_api_stub]
-      WebMock.stub_request(:get, campaigns_url)
-             .to_return(
-               status: 200,
-               body: campaigns_response,
-               headers: common_headers
-             )
-      WebMock.stub_request(:get, single_campaign_url)
-             .to_return(
-               status: 200,
-               body: single_campaign_response,
-               headers: common_headers
-             )
-      WebMock.stub_request(:put, single_campaign_url)
-             .with(body: payload_hash, headers: request_headers)
-             .to_return(
-               status: 200,
-               body: update_campaign_response,
-               headers: common_headers
-             )
+      mock_request(:get, campaigns_url, campaigns_response)
+      mock_request(:get, single_campaign_url, single_campaign_response)
+      mock_request_with(:put, single_campaign_url, update_campaign_response, payload_hash, request_headers)
+      mock_request_with(:post, create_campaign, single_campaign_response, payload_hash, request_headers)
+      mock_request(:post, activate_campaign, single_campaign_response)
+      mock_request(:post, deactivate_campaign, single_campaign_response)
     end
   end
 end

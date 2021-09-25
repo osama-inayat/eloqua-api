@@ -66,4 +66,19 @@ RSpec.describe Eloqua::Api::Campaign, eloqua_campaigns_api_stub: true do
     expect(response_data['startAt']).to eq(12345)
     expect(response_data['endAt']).to eq(34566)
   end
+
+  it 'verifies the campaign creation api' do
+    response_data = eloqua_base_object.create(payload: campaign_payload)
+    expect(response_data).to be_truthy
+  end
+
+  it 'verifies the campaign activate api' do
+    response_data = eloqua_base_object.activate(id: 1, query_params: { active: true })
+    expect(response_data).to be_truthy
+  end
+
+  it 'verifies the campaign deactivate api' do
+    response_data = eloqua_base_object.deactivate(id: 1)
+    expect(response_data).to be_truthy
+  end
 end
