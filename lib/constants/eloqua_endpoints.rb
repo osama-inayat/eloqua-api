@@ -18,5 +18,21 @@ ELOQUA_ENDPOINTS = {
   update_campaign: {
     endpoint: '/assets/campaign/{id}',
     method: :put
-  }.freeze
+  }.freeze,
+  create_campaign: {
+    endpoint: '/assets/campaign',
+    method: :post
+  }.freeze,
+  activate_campaign: {
+    endpoint: '/assets/campaign/active/{id}',
+    method: :post
+  }.freeze,
+  deactive_campaign: {
+    endpoint: '/assets/campaign/draft/{id}',
+    method: :post
+  }.freeze,
+  delete_campaign: {
+    endpoint: '/assets/campaign/{id}',
+    method: :delete
+  }
 }.freeze

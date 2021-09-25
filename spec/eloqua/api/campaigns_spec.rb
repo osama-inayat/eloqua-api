@@ -1,7 +1,7 @@
-require 'eloqua/api/campaigns'
+require 'eloqua/api/campaign'
 require 'eloqua/api/base'
 
-RSpec.describe Eloqua::Api::Campaigns, eloqua_campaigns_api_stub: true do
+RSpec.describe Eloqua::Api::Campaign, eloqua_campaigns_api_stub: true do
   let(:eloqua_base_object) do
     described_class.new(access_token: TEST_SAMPLE_TOKEN, base_url: TEST_SAMPLE_URL)
   end
@@ -39,7 +39,7 @@ RSpec.describe Eloqua::Api::Campaigns, eloqua_campaigns_api_stub: true do
   end
 
   it 'verifies the campaigns api request response' do
-    response_data = eloqua_base_object.all_campaigns(search_params: search_params)
+    response_data = eloqua_base_object.find_all(search_params: search_params)
     expect(response_data['elements']).to be_truthy
     expect(response_data['elements'].length).to be(1)
     response_data['elements'].each do |element|
@@ -51,7 +51,7 @@ RSpec.describe Eloqua::Api::Campaigns, eloqua_campaigns_api_stub: true do
   end
 
   it 'verifies the single campaign api request response' do
-    response_data = eloqua_base_object.single_campaign(id: 1)
+    response_data = eloqua_base_object.find(id: 1)
     expect(response_data).to be_truthy
     expect(test_data['elements'].find do |data|
       response_data['id'] == data['id'] && response_data['name'] == data['name'] &&
@@ -60,7 +60,7 @@ RSpec.describe Eloqua::Api::Campaigns, eloqua_campaigns_api_stub: true do
   end
 
   it 'verifies the campaign updation api' do
-    response_data = eloqua_base_object.update_campaign(id: 1, payload: campaign_payload)
+    response_data = eloqua_base_object.update(id: 1, payload: campaign_payload)
     expect(response_data).to be_truthy
     expect(response_data['name']).to eq('Test Name')
     expect(response_data['startAt']).to eq(12345)
