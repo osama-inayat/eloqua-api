@@ -26,7 +26,7 @@ module Eloqua
 
       private
 
-      def error_class(response) # rubocop: disable all
+      def error_class(response)
         case response.code
         when HTTP_BAD_REQUEST_CODE
           BadRequestError

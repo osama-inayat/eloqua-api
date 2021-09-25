@@ -14,5 +14,9 @@ ELOQUA_ENDPOINTS = {
   single_campaign: {
     endpoint: '/assets/campaign/{id}',
     method: :get
+  }.freeze,
+  update_campaign: {
+    endpoint: '/assets/campaign/{id}',
+    method: :put
   }.freeze
 }.freeze
