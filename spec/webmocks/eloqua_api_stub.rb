@@ -40,7 +40,7 @@ RSpec.configure do |config|
                                      'updatedAt' => '1256486517' }
                                  ] }.to_json
   config.before do |example|
-    base_url = 'https://secure.p02.eloqua.com/API/REST/2.0/'
+    base_url = 'https://eloqua-api-wrapper.com/API/REST/2.0/'
     if example.metadata[:external_asset_types_api_stub]
       WebMock.stub_request(:get, "#{base_url}assets/external/types")
              .to_return(
@@ -50,7 +50,6 @@ RSpec.configure do |config|
                  content_type: 'application/json'
                }
              )
-    elsif example.metadata[:single_asset_activities_api_stub]
       WebMock.stub_request(:get, "#{base_url}assets/external/type/1")
              .to_return(
                status: 200,

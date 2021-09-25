@@ -17,6 +17,10 @@ module Eloqua
                      method_type: request_payload[:method],
                      params: request_payload[:params])
       end
+
+      def sub_necessary_params(payload:, query_params: {}, search_params: {}, id: nil)
+
+      end
     end
   end
 end
