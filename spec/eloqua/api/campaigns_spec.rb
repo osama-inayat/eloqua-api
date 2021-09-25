@@ -25,6 +25,15 @@ RSpec.describe Eloqua::Api::Campaigns, eloqua_campaigns_api_stub: true do
     }
   end
 
+  let(:campaign_payload) do
+    {
+      id: 1,
+      name: 'Testing',
+      startAt: 12344,
+      endAt: 43432
+    }
+  end
+
   it 'verifies described_class is inheriting base class' do
     expect(described_class).to be < Eloqua::Api::Base
   end
@@ -48,5 +57,13 @@ RSpec.describe Eloqua::Api::Campaigns, eloqua_campaigns_api_stub: true do
       response_data['id'] == data['id'] && response_data['name'] == data['name'] &&
       response_data['currentStatus'] == data['currentStatus']
     end).to be_truthy
+  end
+
+  it 'verifies the campaign updation api' do
+    response_data = eloqua_base_object.update_campaign(id: 1, payload: campaign_payload)
+    expect(response_data).to be_truthy
+    expect(response_data['name']).to eq('Test Name')
+    expect(response_data['startAt']).to eq(12345)
+    expect(response_data['endAt']).to eq(34566)
   end
 end
