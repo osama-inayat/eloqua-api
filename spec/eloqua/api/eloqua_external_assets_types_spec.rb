@@ -48,7 +48,7 @@ RSpec.describe Eloqua::Api::EloquaExternalAssetsTypes, external_asset_types_api_
   end
 
   it 'verifies the api request response for \'external-assets-types\'' do
-    response_data = external_assets_type_obj.fetch_external_assets_types
+    response_data = external_assets_type_obj.find_all
     expect(response_data['elements']).to be_truthy
     expect(response_data['elements'].length).to be(4)
     response_data['elements'].each do |element|
@@ -59,7 +59,7 @@ RSpec.describe Eloqua::Api::EloquaExternalAssetsTypes, external_asset_types_api_
   end
 
   it 'verifies the api request response for \'single-asset-type-activities\'' do
-    response_data = external_assets_type_obj.fetch_single_asset_activities(id: 1)
+    response_data = external_assets_type_obj.find(id: 1)
     expect(response_data['id']).to eq(activities_test_data['id'])
     expect(response_data['name']).to eq(activities_test_data['name'])
     expect(response_data['activityTypes'].length).to be(2)

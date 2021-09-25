@@ -34,5 +34,5 @@ ELOQUA_ENDPOINTS = {
   delete_campaign: {
     endpoint: '/assets/campaign/{id}',
     method: :delete
-  }
+  }.freeze
 }.freeze
