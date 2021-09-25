@@ -44,6 +44,8 @@ RSpec.configure do |config|
     deactivate_campaign =
       Addressable::Template.new "#{base_url}#{ELOQUA_ENDPOINTS[:deactive_campaign][:endpoint]}"
 
+    destroy_campaign = Addressable::Template.new "#{base_url}#{ELOQUA_ENDPOINTS[:delete_campaign][:endpoint]}"
+
     if example.metadata[:eloqua_campaigns_api_stub]
       mock_request(:get, campaigns_url, campaigns_response)
       mock_request(:get, single_campaign_url, single_campaign_response)
@@ -51,6 +53,7 @@ RSpec.configure do |config|
       mock_request_with(:post, create_campaign, single_campaign_response, payload_hash, request_headers)
       mock_request(:post, activate_campaign, single_campaign_response)
       mock_request(:post, deactivate_campaign, single_campaign_response)
+      mock_request(:delete, destroy_campaign, {}.to_json)
     end
   end
 end
