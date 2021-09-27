@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "eloqua/api/wrapper/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "eloqua-api"
+  spec.name          = "eloqua-api-wrapper"
   spec.version       = Eloqua::Api::Wrapper::VERSION
   spec.authors       = ["Osama Inayat"]
   spec.email         = ["83946734+osama-inayat@users.noreply.github.com"]
@@ -18,7 +18,6 @@ Gem::Specification.new do |spec|
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
     spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
-    spec.metadata["name"]          = "eloqua-api"
     spec.metadata["homepage_uri"] = spec.homepage
     spec.metadata["source_code_uri"] = "https://github.com/osama-inayat/eloqua-api"
     spec.metadata["changelog_uri"] = "https://github.com/osama-inayat/eloqua-api"
