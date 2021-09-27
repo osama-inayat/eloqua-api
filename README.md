@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install eloqua-api
+    $ gem install eloqua-api-client
 
 ## Usage
 
