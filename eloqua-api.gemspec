@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "eloqua/api/wrapper/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "eloqua-api-wrapper"
+  spec.name          = "eloqua-api"
   spec.version       = Eloqua::Api::Wrapper::VERSION
   spec.authors       = ["Osama Inayat"]
   spec.email         = ["83946734+osama-inayat@users.noreply.github.com"]
