@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ```ruby
 # To setup the client for ExternalAssetTypes
-client = ::Eloqua::EloquaExternalAssetsTypes.new(
+client = ::Eloqua::Api::EloquaExternalAssetsTypes.new(
         access_token: 'YOUR-ACCESS-TOKEN', # e.g. djbhyghb27t36hbdhbkjn7y7bhk
         base_url: 'YOUR-BASE-URL') # e.g. 'https://eloqua-api.com/API/REST/{version}'
 
@@ -47,7 +47,7 @@ find_all method accepts two optional params
 
 # To setup the client for Campaigns
 
-client = ::Eloqua::Campaign.new(
+client = ::Eloqua::Api::Campaign.new(
         access_token: 'YOUR-ACCESS-TOKEN', # e.g. djbhyghb27t36hbdhbkjn7y7bhk
         base_url: 'YOUR-BASE-URL') # e.g. 'https://eloqua-api.com/API/REST/{version}'
         
