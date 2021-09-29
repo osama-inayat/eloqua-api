@@ -31,7 +31,7 @@ client = Eloqua::Api::Campaign.new(access_token: 'YOUR-TOKEN', base_url: 'YOUR_B
 ### Eloqua Campaigns Docs
 To get an idea about ```params```
 
-```https://docs.oracle.com/en/cloud/saas/marketing/eloqua-rest-api/api-application-2.0-campaigns.html```
+https://docs.oracle.com/en/cloud/saas/marketing/eloqua-rest-api/api-application-2.0-campaigns.html
 
 ```ruby
 # To Fetch All Campaigns From Eloqua
