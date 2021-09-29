@@ -1,8 +1,6 @@
-# Eloqua::Api
+# Eloqua Api Client
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/eloqua/api/base`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Eloqua Api Client is a Context Based Ruby Gem for calling Eloqua APIs.
 
 ## Installation
 
@@ -14,70 +12,83 @@ gem 'eloqua-api-client'
 
 And then execute:
 
-    $ bundle
+```ruby
+bundle 
+```
 
 Or install it yourself as:
 
-    $ gem install eloqua-api-client
+``` ruby
+gem install eloqua-api-client
+```
 
 ## Usage
 
 ```ruby
-# To setup the client for ExternalAssetTypes
-client = ::Eloqua::Api::EloquaExternalAssetsTypes.new(
-        access_token: 'YOUR-ACCESS-TOKEN', # e.g. djbhyghb27t36hbdhbkjn7y7bhk
-        base_url: 'YOUR-BASE-URL') # e.g. 'https://eloqua-api.com/API/REST/{version}'
+# to work with Eloqua Campaigns Initialize Client
+client = Eloqua::Api::Campaign.new(access_token: 'YOUR-TOKEN', base_url: 'YOUR_BASE_URL')
+```
+### Eloqua Campaigns Docs
+To get an idea about ```params```
 
-# Getting all ExternalAssetTypes
+```https://docs.oracle.com/en/cloud/saas/marketing/eloqua-rest-api/api-application-2.0-campaigns.html```
+
+```ruby
+# To Fetch All Campaigns From Eloqua
 client.find_all
-# Finding based on some condition like fetching campaigns having active status or 
-# based on name or paginated campaigns you can use optional params 
+# To Fetch All Campaigns Based On Pagination pass named param query_params to find_all
+# I want to get campaigns such that each page has 100 campaigns on it 
+# I will pass the page and the count in query param to achieve that
+client.find_all(query_params: { page: 1, count: 100 })
 
-find_all method accepts two optional params
-    1- query_params # mostly for pagination
-    2- search_params # for fetching ExternalAssetType objects based on some conditions
-    
-# Example below fetchs all the ASSET TYPES by paginating them
-    client.find_all(query_params: { page: 1, count: 100 })
+# Similarly to fetch campaigns based on NAME, status etc
+client.find_all(search_params: { name: 'My Gem', currentStatus: 1 })
 
-# similarly search_params: {} will search for the specific keys added in the hash
+# Both saerch_params and query_params are optional can be used together also
 
-# If we want to fetch the Specific ASSET ACTIVITIES simply hit
-    client.find(id: 'my asset_type_id')
+```
+### Note
+In the Gem All ```find_all``` accepts two optional ```HASH Params``` ```search_params: {}``` and ```query_params: {}```
 
-# To setup the client for Campaigns
+### Find Campaign
+```ruby
+# returns Campaign against provided Id 
+client.find(id: 'campaign_id')
+# id is required param
+```
+### Create Campaign
+```ruby
+# returns created campaign 
+client.create(payload: { name: 'my eloqua campaign', startAt: 1234444, endAt: 120987,...})
+# parload is required param
+```
 
-client = ::Eloqua::Api::Campaign.new(
-        access_token: 'YOUR-ACCESS-TOKEN', # e.g. djbhyghb27t36hbdhbkjn7y7bhk
-        base_url: 'YOUR-BASE-URL') # e.g. 'https://eloqua-api.com/API/REST/{version}'
-        
-# Same here to get all the campaigns 
-    
-    client.find_all
+### Update Campaign
+```ruby
+# returns updated campaign
+client.update(id: 'id',payload: { name: 'new name', startAt: 1234444, endAt: 12098 })
+# id and parload both are required params.
+# please have a look at eloqua documentation for payload 
+```
 
-# find_all method accepts two optional params
-    1- query_params # mostly for pagination
-    
-    2- search_params # for fetching campaigns based on some conditions
+### Activate Campaign
+```ruby
+# returns activated campaign
+client.activate(id: 'id', query_params: { activate: true })
+# id and query_params both are required params. 
+```
 
-# If Campaigns based on some condtions are needed to be fetched 
-    
-# Lets Say we want to get all active campaigns
-    
-    client.find_all(search_params: { currentStatus: 1 })
-    # It will get all the campaigns which are active similarly you can add other 
-    # query key values based on searchable from eloqua documentation
-    
-    # https://docs.oracle.com/en/cloud/saas/marketing/eloqua-develop/Developers/RESTAPI/Tutorials/search_parameter.htm?cshid=SearchParam
-    
-    # If we want to fetch all those campaigns which are active and name like 'some-name'
-    client.find_all(search_params: { currentStatus: 1, name: 'some-name' })
-    
-    # Every time we pass search_params it will do a partials searching
+### DeActivate Campaign
+```ruby
+# returns deactivate campaign
+client.deactivate(id: 'id')
+# id is required param. 
+```
 
-# To Fetch Only a Specific Campaign 
-
-    client.find(id: 'campaign_id')
+### Delete A Campaign
+```ruby
+client.destroy(id: 'id')
+# id is required param. 
 ```
 
 
@@ -89,12 +100,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/osama-inayat/eloqua-api. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/osama-inayat/eloqua-api. This project is intended to be a safe, welcoming space for collaboration.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Eloqua::Api::Wrapper project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/osama-inayat/eloqua-api/blob/master/CODE_OF_CONDUCT.md).
