@@ -34,5 +34,9 @@ ELOQUA_ENDPOINTS = {
   delete_campaign: {
     endpoint: '/assets/campaign/{id}',
     method: :delete
+  }.freeze,
+  create_external_activity: {
+    endpoint: '/data/activity',
+    method: :post
   }.freeze
 }.freeze
